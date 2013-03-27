@@ -39,7 +39,7 @@
             <div class='offset3 span4'>
               <!-- need to style table so it isn't so huge....only need like max 5 chars in each input box -->
               <form action='' method='POST'>
-              <table class='table table-bordered table-condensed table-hover'>
+              <table class='table table-bordered table-hover'>
                 <thead><tr><th style='text-align: center;'>Course Code</th></tr></thead>
                 <tbody><tr><td><input type='text' name='goal' placeholder='CMSC132' /></td></tr></tbody>
               </table>  
