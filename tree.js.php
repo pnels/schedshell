@@ -1,109 +1,90 @@
-function init(){
+function init() {
+  //our data
   var json = 
 <?php
-/* function makeTree($course, $mysqli) {
-$stmt = $mysqli->prepate("SELECT name, prereqs FROM course_info WHERE name = ?");
-$param = $course;
-$stmt->bind_param('s', $param);
-$stmt->execute();
-$stmt->bind_result($name,$prereqs);
-while( $stmt->fetch() ) {
-  echo '{';
-  echo 'id: "'.$name.'",';
-  echo 'name: "'.$name.'",';
-  echo 'data: {},';
-  echo 'children: [';
-  $prqs = explode(", ", $prereqs);
-  foreach ($prqs as $prr) {
-    if( $prr == $name ) {
-      continue;
-    }
-    makeTree($prr, $mysqli); 
-  }
-  echo ']}';
-}
-makeTree($_POST['goal'], $mysqli);
- */
+echo "{ id: 'node01', name: 'node01', data: {}, children: [\n";
+echo "\t{ id: 'node02', name: 'node02', data: {}, children: [] },\n";
+echo "\t{ id: 'node03', name: 'node03', data: {}, children: [\n";
+echo "\t\t{ id: 'node04', name: 'node04', data: {}, children: [\n";
+echo "\t\t\t{ id: 'node05', name: 'node05', data: {}, children: [] }\n";
+echo "\t\t] },\n";
+echo "\t\t{ id: 'node06', name: 'node06', data: {}, children: [] }\n";
+echo "\t] }\n";
+echo "] };";
 ?>
-  ;
-var tree = new $jit.ST({
-  injectInto: 'infovis',
-  duration: 600,
-  transition: $jit.Trans.Quart.easeInOut,
-  levelDistance: 50,
-  Navigation: {
-    enable: true,
-    panning: true
-  },
-  Node: {
-    height: 40,
-    width: 120,
-    type: 'rectangle',
-    color: '#aaa',
-    overridable: true
-  },
-  Edge: {
-    type: 'bezier',
-    overridable: true
-  },
-  onCreateLabel: function(label, node){  
-        label.id = node.id;              
-        label.innerHTML = node.name;  
-        label.onclick = function(){  
-            if(normal.checked) {  
-              st.onClick(node.id);  
-            } else {  
-            st.setRoot(node.id, 'animate');  
-            }  
-        };  
-        //set label styles  
-        var style = label.style;  
-        style.width = 60 + 'px';  
-        style.height = 17 + 'px';              
-        style.cursor = 'pointer';  
-        style.color = '#333';  
-        style.fontSize = '0.8em';  
-        style.textAlign= 'center';  
-        style.paddingTop = '3px';  
+
+  var st = new $jit.ST({
+    injectInto: 'treediv',
+    type: '2D',
+    orientation: 'top',
+    transition: $jit.Trans.Quart.easeInOut,
+    Node: {
+      height: 40,
+      width: 150,
+      type: 'rectangle',
+      color: '#aaa',
+      overridable: true
     },
-    onBeforePlotNode: function(node){  
-        //add some color to the nodes in the path between the  
-        //root node and the selected node.  
-        if (node.selected) {  
-            node.data.$color = "#ff7";  
-        }  
-        else {  
-            delete node.data.$color;  
-            //if the node belongs to the last plotted level  
-            if(!node.anySubnode("exist")) {  
-                //count children number  
-                var count = 0;  
-                node.eachSubnode(function(n) { count++; });  
-                //assign a node color based on  
-                //how many children it has  
-                node.data.$color = ['#aaa', '#baa', '#caa', '#daa', '#eaa', '#faa'][count];                      
-            }  
-        }  
-    },  
-      
-    //This method is called right before plotting  
-    //an edge. It's useful for changing an individual edge  
-    //style properties before plotting it.  
-    //Edge data proprties prefixed with a dollar sign will  
-    //override the Edge global style properties.  
-    onBeforePlotLine: function(adj){  
-        if (adj.nodeFrom.selected && adj.nodeTo.selected) {  
-            adj.data.$color = "#eed";  
-            adj.data.$lineWidth = 3;  
-        }  
-        else {  
-            delete adj.data.$color;  
-            delete adj.data.$lineWidth;  
-        }  
-    }  
-});  
-st.loadJSON(json);
-st.compute();
-st.onClick(st.root);
-st.switchPosition(top);
+    Edge: {
+      type: 'bezier',
+      overridable: true
+    },
+    onCreateLabel: function(label, node){
+            label.id = node.id;            
+            label.innerHTML = node.name;
+            label.onclick = function(){
+              st.onClick(node.id);
+            };
+            //set label styles
+            var style = label.style;
+            style.width = 150 + 'px';
+            style.height = 40 + 'px';            
+            style.cursor = 'pointer';
+            style.color = '#333';
+            style.fontSize = '2em';
+            style.textAlign= 'center';
+            style.paddingTop = '10px';
+    }, 
+    onBeforePlotNode: function(node){
+            //add some color to the nodes in the path between the
+            //root node and the selected node.
+            if (node.selected) {
+                node.data.$color = "#ff7";
+            }
+            else {
+                delete node.data.$color;
+                //if the node belongs to the last plotted level
+                if(!node.anySubnode("exist")) {
+                    //count children number
+                    var count = 0;
+                    node.eachSubnode(function(n) { count++; });
+                    //assign a node color based on
+                    //how many children it has
+                    node.data.$color = ['#aaa', '#baa', '#caa', '#daa', '#eaa', '#faa'][count];                    
+                }
+            }
+    },
+    onBeforePlotLine: function(adj){
+            if (adj.nodeFrom.selected && adj.nodeTo.selected) {
+                adj.data.$color = "#eed";
+                adj.data.$lineWidth = 3;
+            }
+            else {
+                delete adj.data.$color;
+                delete adj.data.$lineWidth;
+            }
+    },
+    Navigation: {
+      enable: true,
+      panning: true
+    }
+  });
+
+  st.loadJSON(json);
+
+  st.compute();
+
+  st.geom.translate(new $jit.Complex(0, 500), "current");
+
+  st.onClick(st.root);
 }
