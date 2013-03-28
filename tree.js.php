@@ -2,7 +2,31 @@ function init() {
   //our data
   var json = 
 <?php
-echo "{ id: 'node01', name: 'node01', data: {}, children: [\n";
+$mysqli = new mysqli("localhost", "hardshell", "d0ntgue55m3", "hardshell");
+function makeTree($code, $mysqli) {
+$stmt = $mysqli->prepare("SELECT name, prereqs FROM course_info WHERE name = ?");
+$stmt->bind_param('s', $course);
+$stmt->execute();
+$stmt->bind_result($name, $prereqs);
+$stmt->store_result();
+while( $stmt->fetch() ) {
+  echo "{ id: '".$name."', name: '".$name."', data: {}, children: [";
+  $prqs = explode(", ", $prereqs);
+  foreach($prqs as $pr) {
+    if( $name == $pr ) { continue; }
+    if( strlen($pr) > 4 ) {
+      makeTree($pr, $mysqli);
+    }
+  }
+  echo "] }";
+}
+}
+
+echo ";";
+
+makeTree($_POST['goal'], $mysqli);
+
+/*echo "{ id: 'node01', name: 'node01', data: {}, children: [\n";
 echo "\t{ id: 'node02', name: 'node02', data: {}, children: [] },\n";
 echo "\t{ id: 'node03', name: 'node03', data: {}, children: [\n";
 echo "\t\t{ id: 'node04', name: 'node04', data: {}, children: [\n";
@@ -11,6 +35,7 @@ echo "\t\t] },\n";
 echo "\t\t{ id: 'node06', name: 'node06', data: {}, children: [] }\n";
 echo "\t] }\n";
 echo "] };";
+*/
 ?>
 
   var st = new $jit.ST({
