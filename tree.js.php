@@ -1,42 +1,61 @@
-function init() {
-  //our data
-  var json = 
 <?php
 $mysqli = new mysqli("localhost", "hardshell", "d0ntgue55m3", "hardshell");
+$safe = 0;
+$arr = array();
 function makeTree($code, $mysqli) {
+global $arr, $safe;
+$arr[] = $code;
+if( $safe >= 10 ) {
+  return;
+}
+$safe++;
 $stmt = $mysqli->prepare("SELECT name, prereqs FROM course_info WHERE name = ?");
-$stmt->bind_param('s', $course);
+$stmt->bind_param('s', $code);
 $stmt->execute();
 $stmt->bind_result($name, $prereqs);
 $stmt->store_result();
+// use php json encode?
+/*
 while( $stmt->fetch() ) {
-  echo "{ id: '".$name."', name: '".$name."', data: {}, children: [";
+  echo "{ id: 'node".$name."', name: '".$name."', data: {}, children: [";
   $prqs = explode(", ", $prereqs);
   foreach($prqs as $pr) {
     if( $name == $pr ) { continue; }
+    if( in_array($pr, $arr) ) { continue; }
     if( strlen($pr) > 4 ) {
       makeTree($pr, $mysqli);
     }
   }
-  echo "] }";
+  echo "] } ";
+}
+ */
+while( $stmt->fetch() ) {
+  $child = array();
+  $prqs = explode(", ", $prereqs);
+  foreach($prqs as $pr) {
+    if( $name == $pr ) { continue; }
+    if( in_array($pr, $arr) ) { continue; }
+    if( strlen($pr) > 4 ) {
+      $out = makeTree($pr, $mysqli);
+      if( count($out) > 2 ) {
+        $child[] = $out;
+      }
+    }
+  }
+  return array(
+    'id' => 'node'.$name,
+    'name' => $name,
+    'children' => $child);
 }
 }
-
-echo ";";
-
-makeTree($_POST['goal'], $mysqli);
-
-/*echo "{ id: 'node01', name: 'node01', data: {}, children: [\n";
-echo "\t{ id: 'node02', name: 'node02', data: {}, children: [] },\n";
-echo "\t{ id: 'node03', name: 'node03', data: {}, children: [\n";
-echo "\t\t{ id: 'node04', name: 'node04', data: {}, children: [\n";
-echo "\t\t\t{ id: 'node05', name: 'node05', data: {}, children: [] }\n";
-echo "\t\t] },\n";
-echo "\t\t{ id: 'node06', name: 'node06', data: {}, children: [] }\n";
-echo "\t] }\n";
-echo "] };";
-*/
 ?>
+function init() {
+  //our data
+  var json = <?php echo json_encode(makeTree($_POST['goal'], $mysqli)); echo ";";?>
+  //
+
+  //var json = { id: 'ALLCAPSNAME0', name: '132', data: {}, children: [{ id: '131', name: '131', data: {}, children: [] }] };
+
 
   var st = new $jit.ST({
     injectInto: 'treediv',
@@ -45,13 +64,14 @@ echo "] };";
     transition: $jit.Trans.Quart.easeInOut,
     Node: {
       height: 40,
-      width: 150,
+      width: 120,
       type: 'rectangle',
       color: '#aaa',
       overridable: true
     },
     Edge: {
-      type: 'bezier',
+      type: 'arrow',
+      lineWidth: 3,
       overridable: true
     },
     onCreateLabel: function(label, node){
@@ -62,11 +82,11 @@ echo "] };";
             };
             //set label styles
             var style = label.style;
-            style.width = 150 + 'px';
+            style.width = 110 + 'px';
             style.height = 40 + 'px';            
             style.cursor = 'pointer';
             style.color = '#333';
-            style.fontSize = '2em';
+            style.fontSize = '1.25em';
             style.textAlign= 'center';
             style.paddingTop = '10px';
     }, 
@@ -109,7 +129,7 @@ echo "] };";
 
   st.compute();
 
-  st.geom.translate(new $jit.Complex(0, 500), "current");
+  st.geom.translate(new $jit.Complex(500, 0), "current");
 
   st.onClick(st.root);
 }

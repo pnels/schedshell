@@ -9,7 +9,9 @@
         <script src='js/bootstrap.min.js' type='text/javascript'></script>
         <script src='js/jit.js' type='text/javascript'></script>
         <script type='text/javascript'>
-        <?php include('tree.js.php'); ?>
+<?php if( isset($_POST['goal']) && preg_match("/\w{4}\d{3}\w?/", $_POST['goal']) ) {
+          include('tree.js.php');
+} ?>
         </script>
 
         <style type="text/css">
@@ -31,7 +33,7 @@
 
 	</head>	
 
-    <body <?php if(isset($_POST['goal'])) { echo 'onload="init();"'; } ?> >
+    <body <?php if( isset($_POST['goal']) && preg_match("/\w{4}\d{3}\w?/", $_POST['goal']) ) { echo 'onload="init();"'; } ?> >
 
     <?php
       printNavbar("goals");
@@ -41,7 +43,7 @@
         <!-- START: main page -->
         <div class='row-fluid'>
             <?php printNavlist("goals"); ?>
-            <div class='offset3 span4'>
+            <div class='offset2 span6'>
               <!-- need to style table so it isn't so huge....only need like max 5 chars in each input box -->
               <form action='' method='POST'>
               <table class='table table-bordered table-hover'>
@@ -129,7 +131,7 @@ if( isset($_POST['goal']) && preg_match("/\w{4}\d{3}\w?/", $_POST['goal']) ) {
 ?>
 </div>
 <div class='row-fluid'>
-<div class='offset5 span4' id="center-container"><div style="width:600px;height:400px;" id="treediv"></div></div>
+<div class='offset5 span5' style='overflow: hidden;' id="center-container"><div style="width:600px;height:400px;overflow: hidden;" id="treediv"></div></div>
 </div>
 
         </div>
