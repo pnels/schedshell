@@ -140,7 +140,7 @@ if( isset($_POST['goal']) && preg_match("/\w{4}\d{3}\w?/", $_POST['goal']) ) {
         <hr />
 
         <div class='footer'>
-            <p>&copy; (insert creative team name here), 2013</p>
+            <p>&copy; SchedShell 2013</p>
         </div>
     </div>
 
