@@ -17,7 +17,7 @@
  * @link     https://wiki.jasig.org/display/CASC/phpCAS
  */
 
-$phpcas_path = '../';
+$phpcas_path = '.';
 
 ///////////////////////////////////////
 // Basic Config of the phpCAS client //

@@ -1,7 +1,7 @@
 <?php
 
 require_once './CAS/config.php';
-require_once $phpcas_path . '/CAS.php';
+require_once './CAS.php';
 
 phpCAS::setDebug();
 
