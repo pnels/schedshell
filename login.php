@@ -11,10 +11,10 @@ require_once './CAS.php';
 phpCAS::client(CAS_VERSION_2_0, $cas_host, $cas_port, $cas_context);
 
 //Comment this out for production.
-phpCAS::setCasServerCACert($cas_server_ca_cert_path);
+//phpCAS::setCasServerCACert($cas_server_ca_cert_path);
 
 //Comment this out for testing.
-//phpCAS::setNoCasServerValidation();
+phpCAS::setNoCasServerValidation();
 
 phpCAS::forceAuthentication();
 
