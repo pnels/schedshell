@@ -17,7 +17,7 @@ if( phpCAS::checkAuthentication() ) {
   $login = "'account.php'";
 } else {
   $user = 'Sign In';
-  $login = "'login.php'";
+  $login = "'auth.php?login'";
 }
 $navbar = <<< NAV
 <div class='navbar navbar-fixed-top'>
@@ -70,8 +70,8 @@ $navlist = <<< LIST
         <!-- <li $cumulative ><a href='cumulative.php'>Cumulative GPA</a></li> -->
         <!-- <li $predict ><a href='predict.php'>GPA Trends</a></li> -->
         <li class='nav-header'>Navigation</li>
-        <li><a href='#'>My Account</a></li>
-        <li><a href='#'>Log Out</a></li>
+        <li><a href='account.php'>My Account</a></li>
+        <li><a href='auth.php?logout'>Log Out</a></li>
       </ul>
     </div>
   </div>

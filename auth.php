@@ -16,7 +16,11 @@ phpCAS::client(CAS_VERSION_2_0, $cas_host, $cas_port, $cas_context);
 //Comment this out for testing.
 phpCAS::setNoCasServerValidation();
 
-phpCAS::forceAuthentication();
+if( isset($_REQUEST['logout']) ) {
+  phpCAS::logout();
+} else if( isset($_REQUEST['login']) ) {
+  phpCAS::forceAuthentication();
+}
 
 header('Location: http://eric.zinnikas.org/schedshell/');
 ?>
