@@ -10,13 +10,20 @@ function printNavbar($name) {
 $index_active = '';
 if($name == "index") { $index_active = "class='active'"; }
 $user = '';
-if( phpCAS::isAuthenticated() ) { $user = 'Welcome ' . phpCAS::getUser(); } else { $user = 'Sign In'; }
+$login = '';
+if( phpCAS::isAuthenticated() ) { 
+  $user = 'Welcome ' . phpCAS::getUser();
+  $login = "'account.php'";
+} else {
+  $user = 'Sign In';
+  $login = "'login.php'";
+}
 $navbar = <<< NAV
 <div class='navbar navbar-fixed-top'>
     <div class='navbar-inner'>
       <div class='container-fluid'>
         <a style="max-height: 40px; overflow: visible; padding-top: 5px; padding-bottom: 0;" href='search.php' class='brand'><img src='img/slogo50.png' /><span style="margin-top: 10px; padding-left: 15px; position: relative; top: 5px;">SCHEDSHELL</span></a>
-        <p class='pull-right'><a href='#' class='btn btn-primary'>$user</a></p>
+        <p class='pull-right'><a href=$login class='btn btn-primary'>$user</a></p>
         <ul class='nav'>
           <li><a $index_active href='search.php'>Home</a></li>
           <li><a href='#'>My Account</a></li>
