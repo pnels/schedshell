@@ -12,7 +12,7 @@ $index_active = '';
 if($name == "index") { $index_active = "class='active'"; }
 $user = '';
 $login = '';
-if( phpCAS::isAuthenticated() ) { 
+if( phpCAS::isSessionAuthenticated() ) { 
   $user = 'Welcome ' . phpCAS::getUser();
   $login = "'account.php'";
 } else {
