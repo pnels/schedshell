@@ -17,6 +17,7 @@ phpCAS::client(CAS_VERSION_2_0, $cas_host, $cas_port, $cas_context);
 phpCAS::setNoCasServerValidation();
 
 if( isset($_REQUEST['logout']) ) {
+  phpCAS::handleLogoutRequests();
   phpCAS::logout();
 } else if( isset($_REQUEST['login']) ) {
   phpCAS::forceAuthentication();
