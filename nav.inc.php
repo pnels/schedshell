@@ -1,5 +1,8 @@
 <?php
 
+require_once './CAS/config.php';
+require_once './CAS.php';
+
 function printNavbar($name) {
 $index_active = '';
 if($name == "index") { $index_active = "class='active'"; }
@@ -8,7 +11,7 @@ $navbar = <<< NAV
     <div class='navbar-inner'>
       <div class='container-fluid'>
         <a style="max-height: 40px; overflow: visible; padding-top: 5px; padding-bottom: 0;" href='search.php' class='brand'><img src='img/slogo50.png' /><span style="margin-top: 10px; padding-left: 15px; position: relative; top: 5px;">SCHEDSHELL</span></a>
-        <p class='pull-right'><a href='#' class='btn btn-primary'>Sign In</a></p>
+        <p class='pull-right'><a href='#' class='btn btn-primary'><?php if( strlen(phpCAS::getUser()) > 1 ) { echo phpCAS::getUser(); } else { echo 'Sign In'; }</a></p>
         <ul class='nav'>
           <li><a $index_active href='search.php'>Home</a></li>
           <li><a href='#'>My Account</a></li>
