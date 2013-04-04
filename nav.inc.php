@@ -9,8 +9,8 @@ phpCAS::setCasServerCACert($cas_server_ca_cert_path);
 function printNavbar($name) {
 $index_active = '';
 if($name == "index") { $index_active = "class='active'"; }
-$user = "";
-if( strlen(phpCAS::getUser()) > 1 ) { $user = 'Welcome ' . phpCAS::getUser(); } else { $user = 'Sign In'; }
+$user = '';
+if( phpCAS::isAuthenticated() ) { $user = 'Welcome ' . phpCAS::getUser(); } else { $user = 'Sign In'; }
 $navbar = <<< NAV
 <div class='navbar navbar-fixed-top'>
     <div class='navbar-inner'>
