@@ -38,15 +38,15 @@
         <div class='row-fluid'>
             <?php printNavlist("goals"); ?>
             <div class='offset2 span6'>
-<?php echo 'POST: '.$_POST['page'].': POST'; ?>
-<?php echo 'POST2: '.$_POST['page2'].': POST'; ?>
+
+<!-- apparently if you're not logged in all post variables are erased? wtf...something to do w/CAS -->
+
 <?php if( !isset($_POST['page']) || $_POST['page'] == '0' ) { ?>
 <form action='' method='POST'>
   <select>
     <option>Computer Science</option>
     <option>Journalism</option>
   </select>
-  <input type='hidden' name='page2' value='1'>
   <input type='hidden' name='page' value='1'>
   <input type='submit' value='Next'>
 </form>  
@@ -169,6 +169,8 @@
     <input type='checkbox' value='CMSC466'>
     CMSC466
   </label>
+  <input type='hidden' name='page' value='2'>
+  <input type='submit' value='Next'>
 </form>
 <? } else if( isset($_POST['page']) && $_POST['page'] == '2' ) { ?>
 
