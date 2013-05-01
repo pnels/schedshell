@@ -39,12 +39,14 @@
             <?php printNavlist("goals"); ?>
             <div class='offset2 span6'>
 <?php echo 'POST: '.$_POST['page'].': POST'; ?>
+<?php echo 'POST2: '.$_POST['page2'].': POST'; ?>
 <?php if( !isset($_POST['page']) || $_POST['page'] == '0' ) { ?>
 <form action='' method='POST'>
   <select>
     <option>Computer Science</option>
     <option>Journalism</option>
   </select>
+  <input type='hidden' name='page2' value='1'>
   <input type='hidden' name='page' value='1'>
   <input type='submit' value='Next'>
 </form>  
