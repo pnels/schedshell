@@ -40,9 +40,6 @@
     ?>
     <div class='container-fluid'>
 
-<div class='row-fluid'>
-<div class='offset5 span5' style='overflow: hidden;' id="center-container"><div style="width:600px;height:400px;overflow: hidden;" id="treediv"></div></div>
-</div>
         <!-- START: main page -->
         <div class='row-fluid'>
             <?php printNavlist("goals"); ?>
@@ -126,13 +123,6 @@ if( isset($_POST['goal']) && preg_match("/\w{4}\d{3}\w?/", $_POST['goal']) ) {
 ?>
 </tbody>
 </table>
-
-<?php
-} elseif( isset($_POST['goal']) ) {
-  echo '<b>Please enter a valid course code.</b>'; 
-}
-?>
-</div>
 
         </div>
         <!-- END: main page -->
