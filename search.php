@@ -40,13 +40,13 @@
     ?>
     <div class='container-fluid'>
 
-<div class='row-fluid'>
-<div class='offset5 span5' style='overflow: hidden;' id="center-container"><div style="width:600px;height:400px;overflow: hidden;" id="treediv"></div></div>
-</div>
         <!-- START: main page -->
         <div class='row-fluid'>
             <?php printNavlist("goals"); ?>
             <div class='offset2 span6'>
+<div class='row-fluid'>
+<div class='offset5 span5' style='overflow: hidden;' id="center-container"><div style="width:600px;height:400px;overflow: hidden;" id="treediv"></div></div>
+</div>
               <!-- need to style table so it isn't so huge....only need like max 5 chars in each input box -->
               <form action='' method='POST'>
               <table class='table table-bordered table-hover'>
