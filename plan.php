@@ -38,6 +38,7 @@
         <div class='row-fluid'>
             <?php printNavlist("goals"); ?>
             <div class='offset2 span6'>
+<?php echo $_POST['page']; ?>
 <?php if( !isset($_POST['page']) || $_POST['page'] == '0' ) { ?>
 <form action='' method='POST'>
   <select>
@@ -47,7 +48,7 @@
   <input type='hidden' name='page' value='1'>
   <input type='submit' value='Next'>
 </form>  
-<? } else if( isset($_POST['page']) && $_POST['page'] == '1' ) { ?>
+<? } else if( isset($_POST['page']) && $_POST['page'] == 1 ) { ?>
 <form action='' method='POST'>
   <label class='checkbox'>
     <input type='checkbox' value='CMSC131'>
