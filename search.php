@@ -44,9 +44,6 @@
         <div class='row-fluid'>
             <?php printNavlist("goals"); ?>
             <div class='offset2 span6'>
-<div class='row-fluid'>
-<div class='offset3 span8' style='overflow: hidden;' id="center-container"><div class='span8' style="height: 400px; overflow: hidden;" id="treediv"></div></div>
-</div>
               <!-- need to style table so it isn't so huge....only need like max 5 chars in each input box -->
               <form action='' method='POST'>
               <table class='table table-bordered table-hover'>
@@ -54,6 +51,10 @@
                 <tbody><tr><td><input type='text' name='goal' placeholder='CMSC132' /></td></tr></tbody>
               </table>  
               </form>
+<br /><br />
+<div class='row-fluid'>
+<div class='offset2 span8' style='overflow: hidden;' id="center-container"><div class='span10' style="height: 400px; overflow: hidden;" id="treediv"></div></div>
+</div>
 <br /><br />
 <?php
 if( isset($_POST['goal']) && preg_match("/\w{4}\d{3}\w?/", $_POST['goal']) ) {
