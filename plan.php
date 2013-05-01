@@ -12,6 +12,8 @@
 
     <body>
 
+    <?php printNavbar("goals"); ?>
+
     <div class='container-fluid'>
 
         <!-- START: main page -->
