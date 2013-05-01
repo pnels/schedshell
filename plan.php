@@ -38,7 +38,7 @@
         <div class='row-fluid'>
             <?php printNavlist("goals"); ?>
             <div class='offset2 span6'>
-<?php echo $_POST['page']; ?>
+<?php echo 'POST: '.$_POST['page'].': POST'; ?>
 <?php if( !isset($_POST['page']) || $_POST['page'] == '0' ) { ?>
 <form action='' method='POST'>
   <select>
