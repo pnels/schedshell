@@ -52,7 +52,7 @@
               </table>  
               </form>
 <div class='row-fluid'>
-<div class='offset2 span8' style='overflow: hidden;' id="center-container"><div class='span10' style="height: 250px; overflow: hidden;" id="treediv"></div></div>
+<div class='offset2 span8' style='overflow: hidden;' id="center-container"><div class='span10' style="height: 350px; overflow: hidden;" id="treediv"></div></div>
 </div>
 <br /><br />
 <?php
