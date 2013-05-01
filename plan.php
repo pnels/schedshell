@@ -44,6 +44,8 @@
     <option>Computer Science</option>
     <option>Journalism</option>
   </select>
+  <input type='hidden' name='page' value='1'>
+  <input type='submit' value='Next'>
 </form>  
 <? } else if( isset($_POST['page']) && $_POST['page'] == '1' ) { ?>
 <form action='' method='POST'>
