@@ -8,6 +8,24 @@
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js' type='text/javascript'></script>
         <script src='js/bootstrap.min.js' type='text/javascript'></script>
         <script src='js/jit.js' type='text/javascript'></script>
+
+ <style type="text/css">
+             body {
+                 padding-top: 80px;
+                 padding-bottom: 40px;
+             }
+             .sidebar-nav {
+                 padding: 9px 0;
+             }
+             .table th, .table td {
+               text-align: center;
+               vertical-align: top;
+             }
+             .table td {
+               padding-top: 10px;
+             }
+         </style>
+
 	</head>	
 
     <body>
