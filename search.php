@@ -51,9 +51,8 @@
                 <tbody><tr><td><input type='text' name='goal' placeholder='CMSC132' /></td></tr></tbody>
               </table>  
               </form>
-<br /><br />
 <div class='row-fluid'>
-<div class='offset2 span8' style='overflow: hidden;' id="center-container"><div class='span10' style="height: 400px; overflow: hidden;" id="treediv"></div></div>
+<div class='offset2 span8' style='overflow: hidden;' id="center-container"><div class='span10' style="height: 250px; overflow: hidden;" id="treediv"></div></div>
 </div>
 <br /><br />
 <?php
