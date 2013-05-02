@@ -41,7 +41,7 @@
     <body <?php if( isset($_POST['goal']) && preg_match("/\w{4}\d{3}\w?/", $_POST['goal']) ) { echo 'onload="init();"'; } ?> >
 
     <?php
-      printNavbar("goals");
+      printNavbar("pre");
     ?>
     <div class='container-fluid'>
 
