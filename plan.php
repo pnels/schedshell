@@ -51,7 +51,7 @@ $list = array( "CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351",
     <option>Journalism</option>
   </select>
   <input type='hidden' name='page' value='1'>
-  <input type='submit' value='Next'>
+  <br /><input type='submit' value='Next'>
 </form>  
 <? } else if( isset($_POST['page']) && $_POST['page'] == 1 ) { ?>
 Select the courses you have currently completed:<br />
@@ -65,7 +65,7 @@ echo "</label>";
 }
 ?>
   <input type='hidden' name='page' value='2'>
-  <input type='submit' value='Next'>
+  <br /><input type='submit' value='Next'>
 </form>
 <? } else if( isset($_POST['page']) && $_POST['page'] == '2' ) { ?>
 <?php
