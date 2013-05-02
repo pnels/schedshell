@@ -51,129 +51,131 @@
   <input type='submit' value='Next'>
 </form>  
 <? } else if( isset($_POST['page']) && $_POST['page'] == 1 ) { ?>
+Select the courses you have currently completed:<br />
 <form action='' method='POST'>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC131'>
+    <input type='checkbox' name='taken[]' value='CMSC131'>
     CMSC131
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC132'>
+    <input type='checkbox' name='taken[]' value='CMSC132'>
     CMSC132
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC216'>
+    <input type='checkbox' name='taken[]' value='CMSC216'>
     CMSC216
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC250'>
+    <input type='checkbox' name='taken[]' value='CMSC250'>
     CMSC250
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC330'>
+    <input type='checkbox' name='taken[]' value='CMSC330'>
     CMSC330
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC351'>
+    <input type='checkbox' name='taken[]' value='CMSC351'>
     CMSC351
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='STAT4XX'>
+    <input type='checkbox' name='taken[]' value='STAT4XX'>
     STAT4XX
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='MATH4XX'>
+    <input type='checkbox' name='taken[]' value='MATH4XX'>
     MATH4XX
   </label>
 <!-- start 400s -->
+400 Level courses are below:<br />
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC411'>
+    <input type='checkbox' name='taken[]' value='CMSC411'>
     CMSC411
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC412'>
+    <input type='checkbox' name='taken[]' value='CMSC412'>
     CMSC412
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC414'>
+    <input type='checkbox' name='taken[]' value='CMSC414'>
     CMSC414
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC417'>
+    <input type='checkbox' name='taken[]' value='CMSC417'>
     CMSC417
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC420'>
+    <input type='checkbox' name='taken[]' value='CMSC420'>
     CMSC420
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC421'>
+    <input type='checkbox' name='taken[]' value='CMSC421'>
     CMSC421
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC422'>
+    <input type='checkbox' name='taken[]' value='CMSC422'>
     CMSC422
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC423'>
+    <input type='checkbox' name='taken[]' value='CMSC423'>
     CMSC423
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC424'>
+    <input type='checkbox' name='taken[]' value='CMSC424'>
     CMSC424
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC426'>
+    <input type='checkbox' name='taken[]' value='CMSC426'>
     CMSC426
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC427'>
+    <input type='checkbox' name='taken[]' value='CMSC427'>
     CMSC427
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC430'>
+    <input type='checkbox' name='taken[]' value='CMSC430'>
     CMSC430
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC433'>
+    <input type='checkbox' name='taken[]' value='CMSC433'>
     CMSC433
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC434'>
+    <input type='checkbox' name='taken[]' value='CMSC434'>
     CMSC434
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC435'>
+    <input type='checkbox' name='taken[]' value='CMSC435'>
     CMSC435
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC436'>
+    <input type='checkbox' name='taken[]' value='CMSC436'>
     CMSC436
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC451'>
+    <input type='checkbox' name='taken[]' value='CMSC451'>
     CMSC451
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC452'>
+    <input type='checkbox' name='taken[]' value='CMSC452'>
     CMSC452
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC456'>
+    <input type='checkbox' name='taken[]' value='CMSC456'>
     CMSC456
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC460'>
+    <input type='checkbox' name='taken[]' value='CMSC460'>
     CMSC460
   </label>
   <label class='checkbox'>
-    <input type='checkbox' value='CMSC466'>
+    <input type='checkbox' name='taken[]' value='CMSC466'>
     CMSC466
   </label>
   <input type='hidden' name='page' value='2'>
   <input type='submit' value='Next'>
 </form>
 <? } else if( isset($_POST['page']) && $_POST['page'] == '2' ) { ?>
-
+  
 <? } ?>
             </div>
         </div>
