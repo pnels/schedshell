@@ -1,3 +1,5 @@
+<!-- -->
+<!--nav.inc.php contains all the code for navigation buttons like the side bar and the top bar-->
 <?php include('nav.inc.php'); ?>
 <!DOCTYPE html>
 <html>
@@ -7,9 +9,12 @@
         <link href="css/bootstrap-journal.min.css" rel="stylesheet" media="screen">
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js' type='text/javascript'></script>
         <script src='js/bootstrap.min.js' type='text/javascript'></script>
+       <!-- Accessing the tree javascript -->
         <script src='js/jit.js' type='text/javascript'></script>
+        
+        <!-- Checks if user has entered a valid course into the text box, then includes tree stuff -->
         <script type='text/javascript'>
-<?php if( isset($_POST['goal']) && preg_match("/\w{4}\d{3}\w?/", $_POST['goal']) ) {
+      <?php if( isset($_POST['goal']) && preg_match("/\w{4}\d{3}\w?/", $_POST['goal']) ) {
           include('tree.js.php');
 } ?>
         </script>
@@ -44,7 +49,6 @@
         <div class='row-fluid'>
             <?php printNavlist("goals"); ?>
             <div class='offset2 span6'>
-              <!-- need to style table so it isn't so huge....only need like max 5 chars in each input box -->
               <form action='' method='POST'>
               <table class='table table-bordered table-hover'>
                 <thead><tr><th style='text-align: center;'>Course Code</th></tr></thead>
