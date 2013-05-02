@@ -82,7 +82,7 @@ echo "</label>";
    $able = TRUE;
    while( $stmt->fetch() ) {
     foreach( explode(", ", $prereqs ) as $pre ) {
-      if( !preg_match("/^CMSC.+/", $pre) { continue; }
+      if( !preg_match("/^CMSC.+/", $pre) ) { continue; }
       if( !in_array( $pre, $list ) ) { $able = FALSE; }
     }
    }
