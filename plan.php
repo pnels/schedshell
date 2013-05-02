@@ -36,7 +36,7 @@
 
         <!-- START: main page -->
         <div class='row-fluid'>
-            <?php printNavlist("goals"); ?>
+            <?php printNavlist("plan"); ?>
             <div class='offset2 span6'>
 
 <!-- apparently if you're not logged in all post variables are erased? wtf...something to do w/CAS -->

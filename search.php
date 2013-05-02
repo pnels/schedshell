@@ -47,7 +47,7 @@
 
         <!-- START: main page -->
         <div class='row-fluid'>
-            <?php printNavlist("goals"); ?>
+            <?php printNavlist("pre"); ?>
             <div class='offset2 span6'>
               <form action='' method='POST'>
               <table class='table table-bordered table-hover'>
