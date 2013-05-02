@@ -39,22 +39,13 @@ echo $navbar;
 }
 
 function printNavlist($name) {
-$index = "";
-$semester = "";
-$goals = "";
-$cumulative = "";
-$predict = "";
+  $preclass = '';
+  $planclass= '';
 
-if($name == 'index') {
-  $index = "class='active'";
-} elseif ($name == 'semester') {
-  $semester = "class='active'";
-} elseif ($name == 'goals') {
-  $goals = "class='active'";
-} elseif ($name == 'cumulative') {
-  $cumulative = "class='active'";
-} elseif ($name == 'predict') {
-  $predict = "class='active'";
+if($name == 'pre') {
+  $preclass = "class='active'";
+} elseif ($name == 'plan') {
+  $planclass = "class='active'";
 }
 
 
@@ -64,11 +55,8 @@ $navlist = <<< LIST
       <ul class='nav nav-list'>
         <li class='nav-header'>Tools</li>
         <li $index ><a href='search.php'>Home</a></li>
-        <li class='active' ><a href='search.php'>Prerequisite Search</a></li>
-        <!-- <li $semester ><a href='semester.php'>Semester GPA</a></li> -->
-        <!-- <li $goals ><a href='goals.php'>GPA Goals</a></li> -->
-        <!-- <li $cumulative ><a href='cumulative.php'>Cumulative GPA</a></li> -->
-        <!-- <li $predict ><a href='predict.php'>GPA Trends</a></li> -->
+        <li $preclass ><a href='search.php'>Prerequisite Search</a></li>
+        <li $planclass ><a href='plan.php'>Four Year Plan</a></li>
         <li class='nav-header'>Navigation</li>
         <li><a href='account.php'>My Account</a></li>
         <li><a href='auth.php?logout'>Log Out</a></li>

@@ -30,7 +30,7 @@
 
     <body>
 
-    <?php printNavbar("goals"); ?>
+    <?php printNavbar("plan"); ?>
 
     <div class='container-fluid'>
 
