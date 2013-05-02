@@ -69,6 +69,10 @@ echo "</label>";
 <? } else if( isset($_POST['page']) && $_POST['page'] == '2' ) { ?>
 <?php
 // use $_POST['taken']
+  $mysqli = new mysqli("localhost", "hardshell", "d0ntgue55m3", "hardshell");
+   if( $mysqli->connect_errno) {
+     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " .      $mysqli->connect_error;
+   }
   function getPre($course,$mysqli) {
 
    if( in_array( $course, $_POST['taken'] ) ) { return FALSE; }
@@ -92,7 +96,7 @@ echo "</label>";
 $oklist = Array();
 
 foreach( $list as $class ) {
-  if( getPre($class) ) {
+  if( getPre($class, $mysqli) ) {
     $oklist[] = $class;
   }
 }
