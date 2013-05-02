@@ -36,8 +36,8 @@
 
         <!-- START: main page -->
         <div class='row-fluid'>
-            <?php printNavlist("goals"); ?>
-            <div class='offset2 span6'>
+            <?php printNavlist("plan"); ?>
+            <div class='offset1 span3'>
 
 <!-- apparently if you're not logged in all post variables are erased? wtf...something to do w/CAS -->
 <?php 
@@ -51,7 +51,7 @@ $list = array( "CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351",
     <option>Journalism</option>
   </select>
   <input type='hidden' name='page' value='1'>
-  <input type='submit' value='Next'>
+  <br /><input type='submit' value='Next'>
 </form>  
 <? } else if( isset($_POST['page']) && $_POST['page'] == 1 ) { ?>
 Select the courses you have currently completed:<br />
@@ -65,7 +65,7 @@ echo "</label>";
 }
 ?>
   <input type='hidden' name='page' value='2'>
-  <input type='submit' value='Next'>
+  <br /><input type='submit' value='Next'>
 </form>
 <? } else if( isset($_POST['page']) && $_POST['page'] == '2' ) { ?>
 <?php
@@ -104,10 +104,14 @@ foreach( $list as $class ) {
 
 ?>
 <table class='table table-bordered table-hover'>
-<thead><tr><th style='text-align: center;'>Courses You Can Take</th></tr></thead>
+<thead>
+<tr><th style='text-align: center;'>Eligible</th></tr>
+</thead>
 <tbody>
 <?
 foreach( $oklist as $class ) {
+// remove from list to display @ end
+unset($list[array_search($class, $list)]);
 ?>
 <tr><td><?php echo $class; ?></td></tr>
 <?php
@@ -115,6 +119,24 @@ foreach( $oklist as $class ) {
 ?>
 </tbody>
 </table>
+</div>
+<div class='offset1 span3'>
+<table class='table table-bordered table-hover'>
+<thead>
+<tr><th style='text-align: center;'>Not Yet Eligible</th></tr>
+</thead>
+<tbody>
+<?php
+foreach( $_POST['taken'] as $class ) { unset($list[array_search($class, $list)]); }
+foreach( $list as $class ) {
+?>
+<tr><td><?php echo $class; ?></td></tr>
+<?php
+}
+?>
+</tbody>
+</table>
+</div>
 <? } ?>
             </div>
         </div>
