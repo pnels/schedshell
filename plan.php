@@ -30,7 +30,7 @@
 
     <body>
 
-    <?php printNavbar("goals"); ?>
+    <?php printNavbar("plan"); ?>
 
     <div class='container-fluid'>
 
@@ -41,6 +41,7 @@
 
 <!-- apparently if you're not logged in all post variables are erased? wtf...something to do w/CAS -->
 <?php 
+global $list;
 $list = array( "CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "CMSC411", "CMSC412", "CMSC414", "CMSC417", "CMSC420", "CMSC421", "CMSC422", "CMSC423", "CMSC424", "CMSC426", "CMSC427", "CMSC430", "CMSC433", "CMSC434", "CMSC435", "CMSC436", "CMSC451", "CMSC452", "CMSC456", "CMSC460", "CMSC466" );
 ?>
 <?php if( !isset($_POST['page']) || $_POST['page'] == '0' ) { ?>
@@ -69,8 +70,12 @@ echo "</label>";
 <? } else if( isset($_POST['page']) && $_POST['page'] == '2' ) { ?>
 <?php
 // use $_POST['taken']
+  $mysqli = new mysqli("localhost", "hardshell", "d0ntgue55m3", "hardshell");
+   if( $mysqli->connect_errno) {
+     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " .      $mysqli->connect_error;
+   }
   function getPre($course,$mysqli) {
-
+  global $list;
    if( in_array( $course, $_POST['taken'] ) ) { return FALSE; }
 
    $stmt = $mysqli->prepare("SELECT name, credits, prereqs, coreqs, description FROM course_info WHERE name = ?");
@@ -82,8 +87,8 @@ echo "</label>";
    $able = TRUE;
    while( $stmt->fetch() ) {
     foreach( explode(", ", $prereqs ) as $pre ) {
-      if( !preg_match("/^CMSC.+/", $pre) { continue; }
-      if( !in_array( $pre, $list ) ) { $able = FALSE; }
+      if( !preg_match("/^CMSC.+/", $pre) ) { continue; }
+      if( !in_array( $pre, $_POST['taken'] ) ) { $able = FALSE; }
     }
    }
    return $able;
@@ -92,7 +97,7 @@ echo "</label>";
 $oklist = Array();
 
 foreach( $list as $class ) {
-  if( getPre($class) ) {
+  if( getPre($class, $mysqli) ) {
     $oklist[] = $class;
   }
 }
