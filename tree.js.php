@@ -1,10 +1,13 @@
 <?php
+//Creates variable to access database
 $mysqli = new mysqli("localhost", "hardshell", "d0ntgue55m3", "hardshell");
 $safe = 0;
 $arr = array();
+//Makes a tree based on the database and course number provided
 function makeTree($code, $mysqli) {
 global $arr, $safe;
 $arr[] = $code;
+//Prevents infinite looping
 if( $safe >= 10 ) {
   return;
 }
@@ -29,6 +32,7 @@ while( $stmt->fetch() ) {
   echo "] } ";
 }
  */
+//Takes all prereqs and puts them into an array that will be used by the tree
 while( $stmt->fetch() ) {
   $child = array();
   $prqs = explode(", ", $prereqs);
@@ -49,6 +53,7 @@ while( $stmt->fetch() ) {
 }
 }
 ?>
+//code used to make actually form the tree, involves formatting
 function init() {
   //our data
   var json = <?php echo json_encode(makeTree($_POST['goal'], $mysqli)); echo ";";?>
