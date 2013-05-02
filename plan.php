@@ -135,6 +135,8 @@ foreach( $list as $class ) {
 }
 ?>
 </tbody>
+</table>
+</div>
 <? } ?>
             </div>
         </div>
