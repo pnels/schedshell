@@ -40,7 +40,9 @@
             <div class='offset2 span6'>
 
 <!-- apparently if you're not logged in all post variables are erased? wtf...something to do w/CAS -->
-
+<?php 
+$list = array( "CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "CMSC411", "CMSC412", "CMSC414", "CMSC417", "CMSC420", "CMSC421", "CMSC422", "CMSC423", "CMSC424", "CMSC426", "CMSC427", "CMSC430", "CMSC433", "CMSC434", "CMSC435", "CMSC436", "CMSC451", "CMSC452", "CMSC456", "CMSC460", "CMSC466" );
+?>
 <?php if( !isset($_POST['page']) || $_POST['page'] == '0' ) { ?>
 <form action='' method='POST'>
   <select>
@@ -53,129 +55,61 @@
 <? } else if( isset($_POST['page']) && $_POST['page'] == 1 ) { ?>
 Select the courses you have currently completed:<br />
 <form action='' method='POST'>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC131'>
-    CMSC131
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC132'>
-    CMSC132
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC216'>
-    CMSC216
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC250'>
-    CMSC250
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC330'>
-    CMSC330
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC351'>
-    CMSC351
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='STAT4XX'>
-    STAT4XX
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='MATH4XX'>
-    MATH4XX
-  </label>
-<!-- start 400s -->
-400 Level courses are below:<br />
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC411'>
-    CMSC411
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC412'>
-    CMSC412
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC414'>
-    CMSC414
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC417'>
-    CMSC417
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC420'>
-    CMSC420
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC421'>
-    CMSC421
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC422'>
-    CMSC422
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC423'>
-    CMSC423
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC424'>
-    CMSC424
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC426'>
-    CMSC426
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC427'>
-    CMSC427
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC430'>
-    CMSC430
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC433'>
-    CMSC433
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC434'>
-    CMSC434
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC435'>
-    CMSC435
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC436'>
-    CMSC436
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC451'>
-    CMSC451
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC452'>
-    CMSC452
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC456'>
-    CMSC456
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC460'>
-    CMSC460
-  </label>
-  <label class='checkbox'>
-    <input type='checkbox' name='taken[]' value='CMSC466'>
-    CMSC466
-  </label>
+<?php
+foreach( $list as $class ) {
+echo "<label class='checkbox'>";
+echo "<input type='checkbox' name='taken[]' value='".$class."'>";
+echo $class;
+echo "</label>";
+}
+?>
   <input type='hidden' name='page' value='2'>
   <input type='submit' value='Next'>
 </form>
 <? } else if( isset($_POST['page']) && $_POST['page'] == '2' ) { ?>
-  
+<?php
+// use $_POST['taken']
+  function getPre($course,$mysqli) {
+
+   if( in_array( $course, $_POST['taken'] ) ) { return FALSE; }
+
+   $stmt = $mysqli->prepare("SELECT name, credits, prereqs, coreqs, description FROM course_info WHERE name = ?");
+   $param = $course;
+   $stmt->bind_param('s', $param);
+   $stmt->execute();
+   $stmt->bind_result($name,$credits,$prereqs,$coreqs,$desc);
+ 
+   $able = TRUE;
+   while( $stmt->fetch() ) {
+    foreach( explode(", ", $prereqs ) as $pre ) {
+      if( !preg_match("/^CMSC.+/", $pre) { continue; }
+      if( !in_array( $pre, $list ) ) { $able = FALSE; }
+    }
+   }
+   return $able;
+  }  
+
+$oklist = Array();
+
+foreach( $list as $class ) {
+  if( getPre($class) ) {
+    $oklist[] = $class;
+  }
+}
+
+?>
+<table class='table table-bordered table-hover'>
+<thead><tr><th style='text-align: center;'>Courses You Can Take</th></tr></thead>
+<tbody>
+<?
+foreach( $oklist as $class ) {
+?>
+<tr><td><?php echo $class; ?></td></tr>
+<?php
+}
+?>
+</tbody>
+</table>
 <? } ?>
             </div>
         </div>
